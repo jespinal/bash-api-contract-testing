@@ -1,0 +1,39 @@
+#
+# Evaluating the structure of the response.
+#
+# Note: the jq builtin function `has()` returns whether the input object has the given key,
+# or the input array has an element at the given index
+#
+# Format:
+# jq filter|callback_your_callback_name<\t>assertion name<\t>expected value<\t>[optional comment]<;>
+has("code")	equals	true	"'code' element is present";
+has("data")	equals	true	"'data' element is present";
+.data|has("transaction")	equals	true	"'data' element has a 'transaction' child";
+.data.transaction|has("id")	equals	true	"'transaction' has an 'id' child'";
+.data.transaction|has("status")	equals	true	"'transaction' has a 'status' child'";
+
+# Code element included in the JSON body should be 200
+# Note: this can also be stated as
+# .code	equals	200;
+.code == 200	equals	true	"code value must be 200";
+
+# Data element should be an object
+.data|type	equals	"object"	"'data' must be of type 'object'";
+
+# Transaction element should be an object
+.data.transaction|type	equals	"object"	"'transaction' must be of type 'object'";
+
+# Id element should be a string
+.data.transaction.id|type	equals	"string"	"'id' element should be a string";
+
+# Status element should be a string
+.data.transaction.status|type	equals	"string"	"'status' element should be a string";
+
+# Status should be either "completed" or "failed"
+.data.transaction.status == "completed" or .data.transaction.status == "failed"	equals	true	"'status' field should be one of: 'completed', 'failed'";
+
+# Finally, this is how a callback should be called.
+# In a callback, some mysterious logic that is not part of the main tool
+# can be developed before we actually need (if we ever do) to modify the
+# tool itself
+callback_return_status_code	equals	200	"the response status code should be 200"
