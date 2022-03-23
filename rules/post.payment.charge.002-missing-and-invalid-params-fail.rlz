@@ -1,0 +1,27 @@
+#
+# 400 Missing And Invalid Parameters
+#
+# This test case ensures that a 400 error is returned when a required parameter
+# is missing from the JSON body in the request, or when garbage parameters are sent.
+#
+callback_return_status_code	equals	400	"the response status code should be 400"
+
+# Code element included in the JSON body should be 400
+# Note: this can also be stated as
+# .code	equals	400;
+.code == 400	equals	true	"code value must be 400";
+
+has("code")	equals	true	"'code' element is present";
+has("message")	equals	true	"'message' element is present";
+
+# Code element should be a string
+.code|type	equals	"number"	"'code' element should be a number";
+
+# Message element should be a string
+.message|type	equals	"string"	"'message' element should be a string";
+
+# Message element should contain a warning about the 'gateway' field being required
+.message|contains("\"gateway\" is required")	equals	true	"'message' contains warning about the gateway param being required";
+
+# Message element should contain a warning about the 'garbage_foo' not being allowed
+.message|contains("\"garbage_foo\" is not allowed")	equals	true	"'message' contains warning about the garbage_foo param not being allowed";

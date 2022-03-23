@@ -1,0 +1,36 @@
+#
+# 400 Missing And Invalid Parameters
+#
+# This test case ensures that a 400 error is returned when a required parameter
+# is missing from the JSON body in the request, or when garbage parameters are sent.
+#
+callback_return_status_code	equals	400	"the response status code should be 400"
+
+# Code element included in the JSON body should be 400
+# Note: this can also be stated as
+# .code	equals	400;
+.code == 400	equals	true	"code value must be 400";
+
+has("code")	equals	true	"'code' element is present";
+has("detail")	equals	true	"'detail' element is present";
+has("info")	equals	true	"'info' element is present";
+has("message")	equals	true	"'message' element is present";
+
+# Code element should be a string
+.code|type	equals	"number"	"'code' element should be a number";
+
+# Detail element should be a string
+.detail|type	equals	"string"	"'detail' element should be a string";
+
+# Info element should be an object
+.info|type	equals	"object"	"'info' element should be an object";
+
+# Message element should be a string
+.message|type	equals	"string"	"'message' element should be a string";
+
+# Message element contains a warning about currency being required
+.message|contains("\"currency\" is required.")	equals	true	"'message' element contains warning about currency being required";
+
+# Message element contains a warning that
+# the creditcard.number value must be a number
+.message|contains("\"creditcard.number\" must be a number")	equals	true	"'message' element contains warning about creditcard.number needing to be a number";

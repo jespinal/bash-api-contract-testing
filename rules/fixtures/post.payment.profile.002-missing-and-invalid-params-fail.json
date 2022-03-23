@@ -1,0 +1,21 @@
+{
+    "email": "battousai@hostpapa.com",
+    "phone": "809-220-3555",
+    "address": {
+        "name": "Battousai Himura",
+        "address1": "123 You Dont Care St",
+        "address2": "Spectral Realm",
+        "city": "Kizugawa",
+        "state": "Kyoto",
+        "country": "JP",
+        "postal": "00000"
+    },
+    "creditcard": {
+        "number": "abcdfghijklmnopq",
+        "cvv2": 34534,
+        "exp_date": {
+            "month": "05",
+            "year": "2022"
+        }
+    }
+}

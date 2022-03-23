@@ -1,0 +1,45 @@
+#
+# payment/profile
+#
+# This test describes the scenario where a `post` request is successful
+#
+has("code")	equals	true	"'code' element is present";
+has("data")	equals	true	"'data' element is present";
+has("info")	equals	true	"'info' element is present";
+.data|has("address")	equals	true	"'data' element has a 'transaction' child";
+.data.address|has("address1")	equals	true	"'address' element has a 'address1' child";
+.data.address|has("address2")	equals	true	"'address' element has a 'address2' child";
+.data.address|has("city")	equals	true	"'address' element has a 'city' child";
+.data.address|has("country")	equals	true	"'address' element has a 'country' child";
+.data.address|has("name")	equals	true	"'address' element has a 'name' child";
+.data.address|has("postal")	equals	true	"'address' element has a 'postal' child";
+.data.address|has("state")	equals	true	"'address' element has a 'state' child";
+.data|has("currency")	equals	true	"'data' element has a 'currency' child";
+.data|has("email")	equals	true	"'data' element has a 'email' child";
+.data|has("phone")	equals	true	"'data' element has a 'phone' child";
+.data|has("token")	equals	true	"'data' element has a 'token' child";
+.info|has("region")	equals	true	"'info' element has a 'region' child";
+.info|has("timers")	equals	true	"'info' element has a 'timers' child";
+
+# HTTP response status code
+callback_return_status_code	equals	200	"the response status code should be 200"
+
+# Code element included in the JSON body should be 200
+# Note: this can also be stated as
+# .code	equals	200;
+.code == 200	equals	true	"code value must be 200";
+
+# Data element should be an object
+.data|type	equals	"object"	"'data' must be of type 'object'";
+
+# Address element should be an object
+.data.address|type	equals	"object"	"'data.address' must be of type 'object'";
+
+# Token element should be a string
+.data.token|type	equals	"string"	"'data.token' must be of type 'string'";
+
+# Region element should be a string
+.info.region|type	equals	"string"	"'info.region' must be of type 'string'";
+
+# Timers element should be an array
+.info.timers|type	equals	"array"	"'info.timers' must be of type 'array'";
