@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #
 source .env;
 source functions.sh;
@@ -7,8 +7,8 @@ for assertion in `ls -1 assertions/*`; do
     source ${assertion};
 done;
 
-for assertion in `ls -1 callbacks/*`; do
-    source ${assertion};
+for callbacks in `ls -1 callbacks/*`; do
+    source ${callbacks};
 done;
 
 # normalize IFS

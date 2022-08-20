@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Count Arguments
 #
@@ -21,7 +21,7 @@ _count_arguments() {
 #
 # @return list of rules files
 scan_rules() {
-    for file_name in $(find rules/ -maxdepth 1 -name "*.rlz" -printf "%f\n" | grep -v '^#' | grep -v '^$' | sort); do
+    for file_name in $(find rules/ -maxdepth 1 -name "*.rlz" -print | grep -v '^#' | grep -v '^$' | sort); do
         # If the rules file name is included in the blacklist, skip it.
         #
         # -x: Select only those matches that exactly match the whole line.

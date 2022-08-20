@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 function is_numeric() {
     if [ $# -lt 1 ]; then

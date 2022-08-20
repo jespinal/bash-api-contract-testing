@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 function is_not_null() {
     if [ $# -lt 1 ]; then

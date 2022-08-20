@@ -1,4 +1,4 @@
-shell=/bin/bash
+shell := /usr/bin/env bash
 
 run-contract-test:
 	$(shell) main.sh

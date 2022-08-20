@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 function equals() {
     if [ $# -lt 2 ]; then

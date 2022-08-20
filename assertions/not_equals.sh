@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 function not_equals() {
     if [ $# -lt 2 ]; then
